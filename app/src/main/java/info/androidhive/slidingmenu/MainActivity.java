@@ -1,9 +1,12 @@
 package info.androidhive.slidingmenu;
 
 import info.androidhive.slidingmenu.adapter.NavDrawerListAdapter;
+import info.androidhive.slidingmenu.model.CalendarItem;
+import info.androidhive.slidingmenu.model.CalendarItemArray;
 import info.androidhive.slidingmenu.model.NavDrawerItem;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -56,8 +59,14 @@ public class MainActivity extends Activity {
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
 		navDrawerItems = new ArrayList<NavDrawerItem>();
+        CalendarItemArray calendarItemArray = new CalendarItemArray(Calendar.getInstance());
+        ArrayList<CalendarItem > ciArray = calendarItemArray.getCalendarItemArray();
 
 		// adding nav drawer items to array
+        // Daily Schedule
+        for (Integer n = 0; n < ciArray.size() ; n++){
+            navDrawerItems.add(new NavDrawerItem(ciArray.get(n).getListText(), navMenuIcons.getResourceId(6, -1)));
+        }
 		// Home
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
 		// Find People
@@ -163,27 +172,27 @@ public class MainActivity extends Activity {
 		// update the main content by replacing fragments
 		Fragment fragment = null;
 		switch (position) {
-		case 0:
+		case 8:
 			fragment = new HomeFragment();
 			break;
-		case 1:
+		case 9:
 			fragment = new FindPeopleFragment();
 			break;
-		case 2:
+		case 10:
 			fragment = new PhotosFragment();
 			break;
-		case 3:
+		case 11:
 			fragment = new CommunityFragment();
 			break;
-		case 4:
+		case 12:
 			fragment = new PagesFragment();
 			break;
-		case 5:
+		case 13:
 			fragment = new WhatsHotFragment();
 			break;
-
 		default:
-			break;
+            fragment = new TodoListFragment();
+            break;
 		}
 
 		if (fragment != null) {
@@ -194,7 +203,8 @@ public class MainActivity extends Activity {
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
+//			setTitle(navMenuTitles[position]);
+            setTitle("Forgetful Person");
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else {
 			// error in creating fragment
