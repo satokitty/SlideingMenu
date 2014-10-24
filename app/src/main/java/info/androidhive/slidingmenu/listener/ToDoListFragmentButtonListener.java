@@ -1,6 +1,8 @@
 package info.androidhive.slidingmenu.listener;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import info.androidhive.slidingmenu.R;
+import info.androidhive.slidingmenu.TodoListFragment;
 import info.androidhive.slidingmenu.adapter.TaskItemListAdapter;
 
 /**
@@ -25,18 +28,11 @@ public class ToDoListFragmentButtonListener implements View.OnClickListener{
     public void onClick(View v) {
 
         String[] members =  { "1","2" } ;
-        Bundle bundle = new Bundle();
-        bundle.putStringArray("toDoList" , members);
 
-
-
-//        ListView toDoList =  (ListView)activity.findViewById(R.id.toDoListView);
-//
-//        ListAdapter toDoListAdapter = new TaskItemListAdapter();
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity.getApplicationContext(),
-//                    android.R.layout.simple_expandable_list_item_1, members);
-//        toDoList.setAdapter(toDoListAdapter);
-
+        ListView toDoList =  (ListView)activity.findViewById(R.id.toDoListView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity.getApplicationContext(),
+                    android.R.layout.simple_expandable_list_item_1, members);
+        toDoList.setAdapter(adapter);
 
     }
 

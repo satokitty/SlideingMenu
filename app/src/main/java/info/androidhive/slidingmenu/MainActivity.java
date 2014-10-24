@@ -169,6 +169,7 @@ public class MainActivity extends Activity {
 	 * Diplaying fragment view for selected nav drawer list item
 	 * */
 	private void displayView(int position) {
+
 		// update the main content by replacing fragments
 		Fragment fragment = null;
 		switch (position) {
@@ -196,6 +197,7 @@ public class MainActivity extends Activity {
 		}
 
 		if (fragment != null) {
+
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, fragment).commit();

@@ -7,15 +7,16 @@ import android.content.res.Resources;
  */
 public class TaskItem {
     private String scheduleDate ;
+    private int taskNum ;
     private String taskTitle ;
     private String taskInterval ;
-    private int taskNum ;
+    private String doTime ;
 
     final private String TASK_INTERVAL_DAILY = "DAILY";
     final private String TASK_INTERVAL_WEEKLY = "WEEKLY";
     final private String TASK_INTERVAL_MONTHLY = "MONTHLY";
 
-    public TaskItem(String scheduleDate, int taskNum , String taskTitle, String taskInterval) throws NullPointerException{
+    public TaskItem(String scheduleDate, int taskNum , String taskTitle, String taskInterval , String doTime) throws NullPointerException{
         this.scheduleDate = scheduleDate;
         this.taskNum = taskNum;
         this.taskTitle = taskTitle;
@@ -27,6 +28,7 @@ public class TaskItem {
             throw new NullPointerException
                     ("taskInterval is not match");
         }
+        this.doTime = doTime;
     }
 
     public String getScheduleDate() {
@@ -45,4 +47,7 @@ public class TaskItem {
         return taskNum;
     }
 
+    public String getDoTime() {
+        return doTime;
+    }
 }
