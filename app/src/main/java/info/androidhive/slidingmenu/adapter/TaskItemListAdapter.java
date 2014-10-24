@@ -60,8 +60,9 @@ public class TaskItemListAdapter extends BaseAdapter {
             taskTitle =  (TextView)view.findViewById(R.id.taskTitle);
             taskInterval= (TextView)view.findViewById(R.id.taskInterval);
 
-            taskNum.setText( taskItem.getTaskNum());
+            taskNum.setText(Integer.toString(taskItem.getTaskNum()));
             taskTitle.setText(taskItem.getTaskTitle());
+//            taskTitle.setText(taskItem.getTaskTitle()+"<"+taskItem.getDoTime()+">");
             taskInterval.setText(taskItem.getTaskInterval());
         }
         return view;

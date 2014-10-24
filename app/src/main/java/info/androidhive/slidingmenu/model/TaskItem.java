@@ -12,9 +12,10 @@ public class TaskItem {
     private String taskInterval ;
     private String doTime ;
 
-    final private String TASK_INTERVAL_DAILY = "DAILY";
-    final private String TASK_INTERVAL_WEEKLY = "WEEKLY";
-    final private String TASK_INTERVAL_MONTHLY = "MONTHLY";
+    public static String TASK_INTERVAL_DAILY =   "DAILY  ";
+    public static String TASK_INTERVAL_WEEKLY =  "WEEKLY ";
+    public static String TASK_INTERVAL_MONTHLY = "MONTHLY";
+    public static String TASK_INTERVAL_YEARLY =  "YEARLY ";
 
     public TaskItem(String scheduleDate, int taskNum , String taskTitle, String taskInterval , String doTime) throws NullPointerException{
         this.scheduleDate = scheduleDate;
@@ -22,7 +23,8 @@ public class TaskItem {
         this.taskTitle = taskTitle;
         if (taskInterval.equals(TASK_INTERVAL_DAILY)||
                 taskInterval.equals(TASK_INTERVAL_WEEKLY)||
-                taskInterval.equals(TASK_INTERVAL_MONTHLY)){
+                taskInterval.equals(TASK_INTERVAL_MONTHLY)||
+                taskInterval.equals(TASK_INTERVAL_YEARLY)){
             this.taskInterval = taskInterval;
         } else{
             throw new NullPointerException
