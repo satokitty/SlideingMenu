@@ -18,7 +18,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import info.androidhive.slidingmenu.R;
 import info.androidhive.slidingmenu.TodoListFragment;
@@ -48,7 +51,7 @@ public class ToDoListFragmentButtonListener implements View.OnClickListener {
     }
 
     public void onClickAddButton(View v) {
-        saveTaskItem();
+
         ListView toDoList = (ListView) activity.findViewById(R.id.toDoListView);
 
 
@@ -60,35 +63,14 @@ public class ToDoListFragmentButtonListener implements View.OnClickListener {
 
     public ArrayList<TaskItem> getTaskItem() {
         ArrayList<TaskItem> taskItemArrayList = new ArrayList<TaskItem>();
-        TaskItem ti1 = new TaskItem("1/1", 1, "睡眠", TaskItem.TASK_INTERVAL_DAILY, "00:00");
-        TaskItem ti2 = new TaskItem("1/1", 2, "ご挨拶", TaskItem.TASK_INTERVAL_YEARLY, "01:00");
+        Calendar calendar =Calendar.getInstance();
+        calendar.set(2014, Calendar.JANUARY ,24);
+
+        TaskItem ti1 = new TaskItem(calendar, 1, "睡眠", TaskItem.TASK_INTERVAL_DAILY, "00:00");
+        TaskItem ti2 = new TaskItem(calendar, 2, "ご挨拶", TaskItem.TASK_INTERVAL_YEARLY, "01:00");
         taskItemArrayList.add(ti1);
         taskItemArrayList.add(ti2);
         return taskItemArrayList;
-    }
-
-    public void saveTaskItem() {
-
-
-        try {
-            OutputStream out = activity.openFileOutput("a.txt", Activity.MODE_PRIVATE);
-            PrintWriter writer = new PrintWriter(new OutputStreamWriter(out, "UTF-8"));
-            //Todo : 読める形に保管する必要がある。
-            for (int i = 0; i < getTaskItem().size(); i++) {
-                TaskItem ti = getTaskItem().get(i);
-                String s = ti.getScheduleDate() + ","
-                        + ti.getTaskNum() + ","
-                        + ti.getTaskTitle() + ","
-                        + ti.getDoTime() + ","
-                        + ti.getTaskInterval();
-                writer.append(s);
-
-            }
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 

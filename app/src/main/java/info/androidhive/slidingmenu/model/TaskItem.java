@@ -3,6 +3,10 @@ package info.androidhive.slidingmenu.model;
 import android.content.res.Resources;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by fukuokak on 2014/10/24.
  */
@@ -18,8 +22,8 @@ public class TaskItem {
     public static String TASK_INTERVAL_MONTHLY = "MONTHLY";
     public static String TASK_INTERVAL_YEARLY =  "YEARLY ";
 
-    public TaskItem(String scheduleDate, int taskNum , String taskTitle, String taskInterval , String doTime) throws NullPointerException{
-        this.scheduleDate = scheduleDate;
+    public TaskItem(Calendar calendar, int taskNum , String taskTitle, String taskInterval , String doTime) throws NullPointerException{
+        this.scheduleDate = String.valueOf(calendar.get(Calendar.YEAR)+calendar.get(Calendar.MONTH)+calendar.get(Calendar.DAY_OF_MONTH));
         this.taskNum = taskNum;
         this.taskTitle = taskTitle;
         if (taskInterval.equals(TASK_INTERVAL_DAILY)||

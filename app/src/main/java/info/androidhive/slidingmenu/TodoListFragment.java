@@ -16,8 +16,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import info.androidhive.slidingmenu.adapter.TaskItemListAdapter;
 import info.androidhive.slidingmenu.listener.ToDoListFragmentButtonListener;
@@ -59,12 +61,17 @@ public class TodoListFragment extends Fragment {
 
     public TaskItemListAdapter setInitialTaskItemAdapter() {
         ArrayList<TaskItem> taskItemArrayList = new ArrayList<TaskItem>();
-        TaskItem ti1 = new TaskItem("12/24", 1, "睡眠", TaskItem.TASK_INTERVAL_DAILY, "00:00");
-        TaskItem ti2 = new TaskItem("12/24", 2, "メリークリスマス", TaskItem.TASK_INTERVAL_YEARLY, "12:00");
+
+        //Todo ここはCalendarクラスを使用しなければならない？かMainActivityから引き渡しをする。
+        Calendar calendar =Calendar.getInstance();
+        calendar.set(2014, Calendar.DECEMBER ,24);
+
+        TaskItem ti1 = new TaskItem(calendar, 1, "睡眠", TaskItem.TASK_INTERVAL_DAILY, "00:00");
+        TaskItem ti2 = new TaskItem(calendar, 2, "メリークリスマス", TaskItem.TASK_INTERVAL_YEARLY, "12:00");
         taskItemArrayList.add(ti1);
         taskItemArrayList.add(ti2);
 
-        getInitialTaskItem(Calendar.getInstance());
+//        getInitialTaskItem(Calendar.getInstance());
 
         TaskItemListAdapter todoAdapter = new TaskItemListAdapter(getActivity().getApplicationContext(),
                 taskItemArrayList);
