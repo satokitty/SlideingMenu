@@ -10,8 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import info.androidhive.slidingmenu.adapter.TaskItemListAdapter;
 import info.androidhive.slidingmenu.listener.ToDoListFragmentButtonListener;
@@ -58,8 +64,27 @@ public class TodoListFragment extends Fragment {
         taskItemArrayList.add(ti1);
         taskItemArrayList.add(ti2);
 
+        getInitialTaskItem(Calendar.getInstance());
+
         TaskItemListAdapter todoAdapter = new TaskItemListAdapter(getActivity().getApplicationContext(),
                 taskItemArrayList);
         return todoAdapter;
+    }
+    public ArrayList<TaskItem> getInitialTaskItem(Calendar calendar){
+        ArrayList<TaskItem> initialTaskItem = new ArrayList<TaskItem>();
+        try{
+        InputStream in = getActivity().openFileInput("a.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                in, "UTF-8"));
+        String s;
+        while ((s = reader.readLine()) != null) {
+            Toast.makeText(getActivity().getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+        }
+        reader.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return null ;
     }
 }

@@ -41,6 +41,8 @@ public class MainActivity extends Activity {
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
 
+    private ArrayList<CalendarItem> ciArray ;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,7 +62,7 @@ public class MainActivity extends Activity {
 
 		navDrawerItems = new ArrayList<NavDrawerItem>();
         CalendarItemArray calendarItemArray = new CalendarItemArray(Calendar.getInstance());
-        ArrayList<CalendarItem > ciArray = calendarItemArray.getCalendarItemArray();
+        ciArray = calendarItemArray.getCalendarItemArray();
 
 		// adding nav drawer items to array
         // Daily Schedule
@@ -193,6 +195,15 @@ public class MainActivity extends Activity {
 			break;
 		default:
             fragment = new TodoListFragment();
+
+//ToDo : must to put ciArray[position] to Next Fragment
+//          ex)  CalendarItem extends Parcelable
+//            Bundleを設定してFragmentの初期値を渡す
+//            Bundle bundle = new Bundle();
+//            bundle.put("day",ciArray[position]);
+//            bundle.putString("category_01", "タンゴ");
+//            bundle.putString("category_02", "イエーガー");
+//            fragment.setArguments(bundle);
             break;
 		}
 

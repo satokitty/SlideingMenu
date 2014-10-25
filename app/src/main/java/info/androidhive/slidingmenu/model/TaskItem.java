@@ -1,6 +1,7 @@
 package info.androidhive.slidingmenu.model;
 
 import android.content.res.Resources;
+import android.os.Parcelable;
 
 /**
  * Created by fukuokak on 2014/10/24.
